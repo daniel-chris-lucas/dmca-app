@@ -8,6 +8,7 @@ Route::get('/', 'PagesController@home');
 /**
  * Notices
  */
+Route::get('notices/create/confirm', 'NoticesController@confirm');
 Route::resource('notices', 'NoticesController');
 
 /**
