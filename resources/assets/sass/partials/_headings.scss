@@ -3,14 +3,14 @@
   margin-bottom: 0;
   padding-bottom: 1em;
   text-align: center;
-  line-height: 1; }
-  .page-heading:after {
+  line-height: 1;
+
+  &:after {
     content: '';
     display: block;
     width: 70px;
     height: 3px;
-    background: #f6624a;
-    margin: 40px auto 0; }
-
-
-/*# sourceMappingURL=app.css.map */
+    background: $brandColor;
+    margin: 40px auto 0;
+  }
+}
