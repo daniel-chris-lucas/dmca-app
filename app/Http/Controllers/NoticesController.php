@@ -30,7 +30,7 @@ class NoticesController extends Controller {
      */
     public function index()
     {
-        $notices = $this->user->notices;
+        $notices = $this->user->notices()->where('content_removed', 0)->get();
 
         return view('notices.index', compact('notices'));
     }
@@ -72,13 +72,23 @@ class NoticesController extends Controller {
     {
         $notice = $this->createNotice($request);
 
-        Mail::queue('emails.dmca', compact('notice'), function ($message) use ($notice) {
+        Mail::queue(['text' => 'emails.dmca'], compact('notice'), function ($message) use ($notice) {
             $message->from($notice->getOwnerEmail())
                 ->to($notice->getRecipientEmail())
                 ->subject('DMCA Notice');
         });
 
+        flash('Your DMCA notice has been delivered!');
+
         return redirect('notices');
+    }
+
+    public function update($noticeId, Request $request)
+    {
+        $isRemoved = $request->has('content_removed');
+
+        Notice::findOrFail($noticeId)
+            ->update(['content_removed' => $isRemoved]);
     }
 
     /**

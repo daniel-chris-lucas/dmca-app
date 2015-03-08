@@ -12,5 +12,15 @@
     background: #f6624a;
     margin: 40px auto 0; }
 
+.flash {
+  background: #f6624a;
+  color: white;
+  width: 200px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 1em;
+  display: none; }
+
 
 /*# sourceMappingURL=app.css.map */
